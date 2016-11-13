@@ -1,0 +1,76 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>br.com.gatling</groupId>
+	<artifactId>gatling-sample</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>Gatling Sample</name>
+
+	<properties>
+		<scala.version>2.11.8</scala.version>
+		<scala-library.version>${scala.version}</scala-library.version>
+		<gatling-charts-highcharts.version>2.2.2</gatling-charts-highcharts.version>
+		<maven-scala-plugin.version>2.15.2</maven-scala-plugin.version>
+		<gatling-maven-plugin.version>2.2.0</gatling-maven-plugin.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.scala-lang</groupId>
+			<artifactId>scala-library</artifactId>
+			<version>${scala-library.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.gatling.highcharts</groupId>
+			<artifactId>gatling-charts-highcharts</artifactId>
+			<version>${gatling-charts-highcharts.version}</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.scala-tools</groupId>
+				<artifactId>maven-scala-plugin</artifactId>
+				<version>${maven-scala-plugin.version}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>compile</goal>
+							<goal>testCompile</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<checkMultipleScalaVersions>false</checkMultipleScalaVersions>
+				</configuration>
+			</plugin>
+
+			<!-- http://gatling.io/docs/2.2.2/extensions/maven_plugin.html -->
+			<plugin>
+				<groupId>io.gatling</groupId>
+				<artifactId>gatling-maven-plugin</artifactId>
+				<version>${gatling-maven-plugin.version}</version>
+				<!--<configuration>
+					<simulationsFolder>${project.basedir}/target/test-classes/br/com/gatling</simulationsFolder>
+					<resultsFolder>${project.basedir}/target/gatling/results</resultsFolder>
+					<disableCompiler>true</disableCompiler>
+				</configuration>-->
+				<executions>
+					<execution>
+						<goals>
+							<goal>integration-test</goal>
+						</goals>
+						<configuration>
+							<simulationsFolder>${project.basedir}/target/test-classes/br/com/gatling</simulationsFolder>
+							<resultsFolder>${project.basedir}/target/gatling/results</resultsFolder>
+							<disableCompiler>true</disableCompiler>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
