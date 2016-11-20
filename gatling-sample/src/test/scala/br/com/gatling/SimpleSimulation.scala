@@ -49,13 +49,13 @@ class SimpleSimulation extends Simulation {
 		   * Assertions sao definidas atraves de um escopo.estatistica.metrica.condicao:
 		   * Ex.: global.responseTime.max.lessThan
 		   */
-		  global.responseTime.max.lessThan(20), // 20ms
+		  global.responseTime.max.lessThan(1000), // 20ms
 		  forAll.successfulRequests.percent.is(100),
 
 		  /**
 		   * É possivel validar o resultado de requisicoes de grupos especificos
 		   */
-		  details("generateMessageWithoutErrorsGroup" / "generateMessageWithoutErrorsReq").responseTime.max.lessThan(10)
+		  details("generateMessageWithoutErrorsGroup" / "generateMessageWithoutErrorsReq").responseTime.max.lessThan(1000)
 	  )
 
 	after {
